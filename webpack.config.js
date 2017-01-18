@@ -2,8 +2,6 @@ var webpack = require('webpack');
 
 var nodeEnv = process.env.NODE_ENV || 'production';
 
-var LiveReloadPlugin = require('webpack-livereload-plugin');
-
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -43,8 +41,6 @@ module.exports = {
       filename: '../css/main.css',
       allChunks: true
     }),
-    // LiveReload
-    new LiveReloadPlugin(),
     // uglify js
     new webpack.optimize.UglifyJsPlugin({
       compress: {
