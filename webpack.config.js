@@ -1,9 +1,12 @@
 var webpack = require('webpack');
+
 var nodeEnv = process.env.NODE_ENV || 'production';
 
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   // devtool: 'source-map',
@@ -27,9 +30,14 @@ module.exports = {
     }, {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract("style-loader!css-loader")
     }]
   },
   plugins: [
+    // css optimize
+    new OptimizeCssAssetsPlugin(),
     // sass
     new ExtractTextPlugin({
       filename: '../css/main.css',
