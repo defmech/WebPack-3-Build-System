@@ -2,7 +2,7 @@ const name = 'TestClassName';
 
 export default class TestClass {
   constructor() {
-    console.log('testclass.js', 'name', name);
+    console.log('testclass.js', 'TestClass constructor');
   }
 
   toString() {

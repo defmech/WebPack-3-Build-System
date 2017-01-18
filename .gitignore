@@ -1,2 +1,4 @@
 dist/js
 node_modules
+dist/css
+npm-debug.log

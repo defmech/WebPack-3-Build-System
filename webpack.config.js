@@ -3,9 +3,11 @@ var nodeEnv = process.env.NODE_ENV || 'production';
 
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
-  devtool: 'source-map',
-  entry: './src/main.js',
+  // devtool: 'source-map',
+  entry: './src/js/main.js',
   output: {
     filename: 'bundle.js',
     path: './dist/js/',
@@ -22,9 +24,17 @@ module.exports = {
           }]
         ]
       }
+    }, {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract('css-loader!sass-loader')
     }]
   },
   plugins: [
+    // sass
+    new ExtractTextPlugin({
+      filename: '../css/main.css',
+      allChunks: true
+    }),
     // LiveReload
     new LiveReloadPlugin(),
     // uglify js
@@ -43,5 +53,5 @@ module.exports = {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
     })
-  ]
+  ],
 }
