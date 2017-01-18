@@ -1,7 +1,7 @@
-import {
-  uniq
-} from 'lodash';
+// import { uniq } from 'lodash';
 
+import TestClass from './testclass';
 
-console.log(uniq([2, 1, 2]));
-console.log(uniq([2, 1, 2, 5, 8, 5, 0]));
+const testClass = new TestClass();
+
+console.log('main.js', 'testClass', testClass.name);

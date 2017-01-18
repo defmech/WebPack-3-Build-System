@@ -1,12 +1,14 @@
-const webpack = require('webpack');
-const nodeEnv = process.env.NODE_ENV || 'production';
+var webpack = require('webpack');
+var nodeEnv = process.env.NODE_ENV || 'production';
+
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   devtool: 'source-map',
   entry: './src/main.js',
   output: {
     filename: 'bundle.js',
-    path: './dist/js/'
+    path: './dist/js/',
   },
   module: {
     loaders: [{
@@ -23,6 +25,8 @@ module.exports = {
     }]
   },
   plugins: [
+    // LiveReload
+    new LiveReloadPlugin(),
     // uglify js
     new webpack.optimize.UglifyJsPlugin({
       compress: {
