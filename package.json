@@ -1,0 +1,21 @@
+{
+  "name": "buildsystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack --progress --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015-native-modules": "^6.9.4",
+    "webpack": "^2.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
