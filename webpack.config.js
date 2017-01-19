@@ -27,10 +27,7 @@ module.exports = {
       }
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('css-loader!sass-loader')
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract("style-loader!css-loader")
+      loader: ExtractTextPlugin.extract('css-loader!postcss-loader!sass-loader')
     }]
   },
   plugins: [
