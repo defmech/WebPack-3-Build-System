@@ -5,15 +5,7 @@ export default class TestClass {
     console.log('testclass.js', 'TestClass constructor');
 
     setTimeout(() => {
-      console.log('testclass.js', 'After delay');
+      console.log('testclass.js', 'After delay', 'name', name);
     }, 2000);
-  }
-
-  toString() {
-    return name;
-  }
-
-  get name() {
-    return name;
   }
 }

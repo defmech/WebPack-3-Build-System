@@ -1,17 +1,24 @@
 var webpack = require('webpack');
-
-var nodeEnv = process.env.NODE_ENV || 'production';
-
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+var path = require("path");
+
+/**
+ * Define Path
+ */
+
+
+var outputFolder = 'build';
 
 module.exports = {
-  // devtool: 'source-map',
+  devtool: 'source-map',
   entry: './src/js/main.js',
   output: {
-    filename: 'bundle.js',
-    path: './build/js/',
+    path: path.resolve(__dirname, outputFolder),
+    filename: 'js/[name].js',
   },
   module: {
     loaders: [{
@@ -27,31 +34,38 @@ module.exports = {
       }
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('css-loader!postcss-loader!sass-loader')
+      loader: ExtractTextPlugin.extract('css-loader?url=false!postcss-loader!sass-loader')
     }]
   },
   plugins: [
+    // HTML
+    new HtmlWebpackPlugin({
+      title: 'DEV! WebPack-2-Build-System',
+      hash: true,
+      template: './src/index.html',
+    }),
     // css optimize
     new OptimizeCssAssetsPlugin(),
+    // copy static
+    new CopyWebpackPlugin([{
+      from: './src/assets',
+      to: 'assets',
+    }]),
+    // Clean build
+    new CleanWebpackPlugin([outputFolder], {
+      verbose: true,
+      dry: false,
+      exclude: []
+    }),
     // sass
     new ExtractTextPlugin({
-      filename: '../css/main.css',
+      filename: 'css/main.css',
       allChunks: true
-    }),
-    // uglify js
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      },
-      sourceMap: true
     }),
     // env plugin
     new webpack.DefinePlugin({
       'proccess.env': {
-        NODE_ENV: JSON.stringify(nodeEnv)
+        NODE_ENV: 'production',
       }
     })
   ],
