@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     // HTML
     new HtmlWebpackPlugin({
-      title: 'DEV! WebPack-2-Build-System',
+      title: 'DEV! WebPack-3-Build-System',
       hash: true,
       template: './src/index.html',
     }),
